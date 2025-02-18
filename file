@@ -6,3 +6,6 @@ and Replace # %wheel with ansible
 # %wheel        ALL=(ALL)       NOPASSWD: ALL
 ## Same thing without a password
 ansible        ALL=(ALL)       NOPASSWD: ALL
+
+sudo useradd -m -s /bin/bash ansible
+
