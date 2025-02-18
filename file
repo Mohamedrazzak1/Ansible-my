@@ -1,5 +1,8 @@
-hello world
-second world war
-third file
-feature branch fueaty
-hjhjhj
+visudo OR vim /etc/sudoers
+
+and Replace # %wheel with ansible
+
+## Same thing without a password
+# %wheel        ALL=(ALL)       NOPASSWD: ALL
+## Same thing without a password
+ansible        ALL=(ALL)       NOPASSWD: ALL
