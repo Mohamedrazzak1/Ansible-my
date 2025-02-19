@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Variables
+USERNAME="ansible-worker"
+PASSWORD="ansible123@"  # Change this to a secure password
+SSH_CONFIG="/etc/ssh/sshd_config"
+
+# Check if user already exists
+if id "$USERNAME" &>/dev/null; then
+    echo "User '$USERNAME' already exists. Skipping user creation."
+else
+    # Create the user
+    echo "Creating user '$USERNAME'..."
+    sudo useradd -m -s /bin/bash "$USERNAME"
+    
+    # Set password for the user
+    echo "Setting password for '$USERNAME'..."
+    echo "$USERNAME:$PASSWORD" | sudo chpasswd
+fi
+
+# Enable password authentication for SSH
+echo "Enabling password authentication..."
+sudo sed -i 's/^#PasswordAuthentication no/PasswordAuthentication yes/' $SSH_CONFIG
+sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' $SSH_CONFIG
+
+# Restart SSH service
+echo "Restarting SSH service..."
+sudo systemctl restart sshd
+
+echo "User '$USERNAME' created and password authentication enabled successfully!"
