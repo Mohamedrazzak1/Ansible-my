@@ -3,8 +3,7 @@
 # Variables
 USERNAME="ansible"
 PASSWORD="Ansible@123"  # Change this to a secure password
-#SSH_CONFIG="/etc/ssh/sshd_config"
-#CLOUDIMG_CONFIG="/etc/ssh/sshd_config.d/60-cloudimg-settings.conf"
+
 
 # Update package lists
 echo "Updating packages..."
@@ -26,15 +25,7 @@ echo "$USERNAME:$PASSWORD" | sudo chpasswd
 echo "Adding '$USERNAME' to sudo group..."
 sudo usermod -aG sudo $USERNAME
 
-# Enable password authentication for SSH
-echo "Enabling password authentication..."
-sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' $SSH_CONFIG
-sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' $SSH_CONFIG
 
-# Update cloud-init SSH settings
-echo "Updating $CLOUDIMG_CONFIG..."
-sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' $CLOUDIMG_CONFIG
-sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' $CLOUDIMG_CONFIG
 
 sudo systemctl restart ssh #for ubuntu
 #sudo systemctl restart sshd  for i dont know please check it.
