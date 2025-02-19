@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Variables
+USERNAME="ansible"
+
+echo "Stopping SSH service..."
+sudo systemctl stop ssh  # Ubuntu uses 'ssh', while other distros may use 'sshd'
+
+# Remove the user and its home directory
+echo "Removing user '$USERNAME'..."
+sudo userdel -r $USERNAME
+
+# Uninstall Ansible
+echo "Uninstalling Ansible..."
+sudo apt remove --purge -y ansible
+sudo apt autoremove -y
+
+# Restart SSH service
+echo "Restarting SSH service..."
+sudo systemctl start ssh
+
+echo "Cleanup completed successfully!"
