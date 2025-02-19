@@ -36,6 +36,7 @@ echo "Updating $CLOUDIMG_CONFIG..."
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' $CLOUDIMG_CONFIG
 sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' $CLOUDIMG_CONFIG
 
-sudo systemctl restart sshd
+sudo systemctl restart ssh #for ubuntu
+#sudo systemctl restart sshd  for i dont know please check it.
 
 echo "Setup completed successfully!"
