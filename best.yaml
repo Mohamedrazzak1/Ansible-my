@@ -1,0 +1,29 @@
+[frontend]
+frontend-1 ansible_host=192.168.1.10 ansible_user=frontend-user
+frontend-2 ansible_host=192.168.1.11 ansible_user=frontend-user
+
+[backend]
+backend-1 ansible_host=192.168.1.20 ansible_user=backend-user
+backend-2 ansible_host=192.168.1.21 ansible_user=backend-user
+
+[jenkins]
+jenkins-master ansible_host=192.168.2.10 ansible_user=jenkins-user
+jenkins-agent-1 ansible_host=192.168.2.11 ansible_user=jenkins-user
+jenkins-agent-2 ansible_host=192.168.2.12 ansible_user=jenkins-user
+
+[sonarqube]
+sonarqube ansible_host=192.168.2.20 ansible_user=sonarqube-user
+
+[all_servers:children]
+frontend
+backend
+jenkins
+sonarqube
+
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+
+🔹 Understanding [all_servers:children] in Ansible Inventory
+The [all_servers:children] section in Ansible groups multiple host groups together under a parent group.
+
