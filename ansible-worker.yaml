@@ -24,6 +24,7 @@ echo "Updating $CLOUDIMG_CONFIG..."
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' $CLOUDIMG_CONFIG
 sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' $CLOUDIMG_CONFIG
 
-sudo systemctl restart ssh
+sudo systemctl restart sshd #for linux
+sudo systemctl restart ssh #for ubuntu
 
 echo "User '$USERNAME' created and password authentication enabled successfully!"
